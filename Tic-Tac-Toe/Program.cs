@@ -8,6 +8,7 @@ class Program
     static void Main()
     {
         Board.CreateBoard();
+        Board.PlaceMarker();
     }
 }
 
