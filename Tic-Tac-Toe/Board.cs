@@ -4,21 +4,27 @@ using System.Linq;
 using System.Runtime.InteropServices;
 
 public class Board
-    {
-        public static List<string> _theBoard = new List<string>(); 
-        
-        public static void CreateBoard()
-        {
-            _theBoard.Add("  1 2 3 ");
-            _theBoard.Add(" +-+-+-+");
-            _theBoard.Add("A| | | |");
-            _theBoard.Add(" +-+-+-+");
-            _theBoard.Add("B| | | |");
-            _theBoard.Add(" +-+-+-+");
-            _theBoard.Add("C| | | |");
-            _theBoard.Add(" +-+-+-+");
+{
+    public static List<string> _theBoard = new List<string>();
 
-            Console.WriteLine(string.Join("\n", _theBoard));
-        }
+    public static void CreateBoard()
+    {
+        _theBoard.AddRange(new[] { " ", "  ", "1", " ", "2", " ", "3", " ", "\n" });
+        _theBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        _theBoard.AddRange(new[] { "A", "|", " ", "|", " ", "|", " ", "|", "\n" });
+        _theBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        _theBoard.AddRange(new[] { "B", "|", " ", "|", " ", "|", " ", "|", "\n" });
+        _theBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        _theBoard.AddRange(new[] { "C", "|", " ", "|", " ", "|", " ", "|", "\n" });
+        _theBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        Console.WriteLine(string.Join(" ", _theBoard));
     }
+
+    // X horizontal, Y vertical
+    public static void PlaceMarker(string positionX, string positionY)
+    {
+
+    }
+
+}
 
