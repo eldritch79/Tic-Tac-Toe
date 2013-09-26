@@ -88,15 +88,35 @@ public class Board
         C2 = _theBoard[58];
         C3 = _theBoard[60];
 
-        if (A1 == "X" && A2 == "X" && A3 == "X")
+        // Possible winning combinations
+        string aTop = A1 + A2 + A3;
+        string bMiddle = B1 + B2 + B3;
+        string cBottom = C1 + C2 + C3;
+        string IVertical = A1 + B1 + C1;
+        string IIVertical = A2 + B2 + C2;
+        string IIIVertical = A3 + B3 + C3;
+        string aDiagonal = A1 + B2 + C3;
+        string cDiagonal = C1 + B2 + A3;
+        
+        // Atm the first player always wins, there's three empty spaces in a row everywhere ...
+        if (aTop.Distinct().Count() == 1 || bMiddle.Distinct().Count() == 1 || cBottom.Distinct().Count() == 1)
         {
-            AnnounceWinner();
+            AnnounceWinner("horizontal");
+        }
+        else if (IVertical.Distinct().Count() == 1 || IIVertical.Distinct().Count() == 1 ||
+                 IIIVertical.Distinct().Count() == 1)
+        {
+            AnnounceWinner("vertical");
+        }
+        else if (aDiagonal.Distinct().Count() == 1 || cDiagonal.Distinct().Count() == 1)
+        {
+            AnnounceWinner("diagonal");
         }
     }
 
-    public static void AnnounceWinner()
+    public static void AnnounceWinner(string winType)
     {
-        Console.WriteLine("YAY!!! You won!!");
+        Console.WriteLine("YAY!!! {0} won with three in a row in a {1} line!", Player1Turn ? "Player2" : "Player1", winType);
     }
 }
 
