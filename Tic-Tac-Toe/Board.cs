@@ -99,16 +99,16 @@ public class Board
         string cDiagonal = C1 + B2 + A3;
         
         // Atm the first player always wins, there's three empty spaces in a row everywhere ...
-        if (aTop.Distinct().Count() == 1 || bMiddle.Distinct().Count() == 1 || cBottom.Distinct().Count() == 1)
+        if (aTop.Distinct().Count() == 1 && !aTop.Contains(" ")|| bMiddle.Distinct().Count() == 1 && !bMiddle.Contains(" ")|| cBottom.Distinct().Count() == 1 && !cBottom.Contains(" "))
         {
             AnnounceWinner("horizontal");
         }
-        else if (IVertical.Distinct().Count() == 1 || IIVertical.Distinct().Count() == 1 ||
-                 IIIVertical.Distinct().Count() == 1)
+        else if (IVertical.Distinct().Count() == 1 && !IVertical.Contains(" ")|| IIVertical.Distinct().Count() == 1 && !IIVertical.Contains(" ")||
+                 IIIVertical.Distinct().Count() == 1 && !IIIVertical.Contains(" "))
         {
             AnnounceWinner("vertical");
         }
-        else if (aDiagonal.Distinct().Count() == 1 || cDiagonal.Distinct().Count() == 1)
+        else if (aDiagonal.Distinct().Count() == 1 && !aDiagonal.Contains(" ")|| cDiagonal.Distinct().Count() == 1 && !cDiagonal.Contains(" "))
         {
             AnnounceWinner("diagonal");
         }
