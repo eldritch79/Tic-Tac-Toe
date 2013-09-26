@@ -7,7 +7,8 @@ class Program
 {
     static void Main()
     {
-        Board.CreateBoard();
+        Board.CreateVisualBoard();
+        Board.CreateProgramBoard();
         GameMechanics.Input();
 //        Board.PlaceMarker("B2");
 //        Board.PlaceMarker("A1");
