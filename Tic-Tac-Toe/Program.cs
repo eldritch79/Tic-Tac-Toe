@@ -7,6 +7,7 @@ class Program
 {
     static void Main()
     {
+        UserGreeting.userInputName();
         Board.CreateVisualBoard();
         Board.CreateProgramBoard();
         GameMechanics.Input();
