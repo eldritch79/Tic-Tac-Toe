@@ -62,7 +62,7 @@ public class Board
 
     // Method will take user input, i.e. A2, B3, translate it to the
     // real position in the VisualBoard.
-    public static int PositionTable(string position)
+    public static int PositionTableForVisualBoard(string position)
     {
         // Create a hashtable with the positions of the fields
         // on the VisualBoard where a player may put his/hers mark 
@@ -79,7 +79,7 @@ public class Board
             {"C3", 60}
         };
 
-        int realPosition = (int)positionOfSquares[position.ToUpper()];
+        int realPosition = (int)positionOfSquares[position];
         return realPosition;
     }
 
@@ -87,7 +87,7 @@ public class Board
     {
 
         // Translate Xn (ie. A1) to actual index position in list VisualBoard
-        int positionToPlaceMarker = PositionTable(position);
+        int positionToPlaceMarker = PositionTableForVisualBoard(position);
 
         // Remove existing empty space and replace with MarkerType (X or O).
         VisualBoard.RemoveAt(positionToPlaceMarker);
@@ -97,7 +97,7 @@ public class Board
         
         //Testing new board and winnercontrol
         PlaceInProgramBoard(position);
-        TestWinner();
+        TestForWinner();
         SwitchPlayer();
     }
 
@@ -115,7 +115,7 @@ public class Board
 
     // Brand new method for checking if there's a winner
     // A lot less messy than the ultralong if's we had before.
-    public static void TestWinner()
+    public static void TestForWinner()
     {
         // Using arrays within arrays, inception yay!
         // Each array in this array (ie. {0,1,2}) represents
