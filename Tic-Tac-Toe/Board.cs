@@ -8,7 +8,7 @@ public class Board
     public static bool Player1Turn { get; set; }
     public static string MarkerType { get; set; }
     public static string[] ProgramBoard { get; set; }
-
+    public static bool GameOver { get; set; }
     // This board is purely visual only, no calculations of winner or any
     // other calculations are made with this board/list. It will only show
     // the grid and update it with the markers X/O input by users.
@@ -165,5 +165,6 @@ public class Board
     public static void AnnounceWinner()
     {
         Console.WriteLine("YAY!!! {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
+        GameOver = true;
     }
 }
