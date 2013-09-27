@@ -33,14 +33,14 @@ public class Board
     // They will be set to X or O when a player sets his mark on the board.
     public static void CreateProgramBoard()
     {
-        ProgramBoard = new[] {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+        ProgramBoard = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
     }
 
     // This method puts the player marks on the ProgramBoard.
     public static void PlaceInProgramBoard(string position)
     {
         // Translates user input into real positions in the ProgramBoard array
-    Hashtable positionOfSquares = new Hashtable
+        Hashtable positionOfSquares = new Hashtable
         {
             {"A1", 0},
             {"A2", 1},
@@ -53,7 +53,7 @@ public class Board
             {"C3", 8}
         };
 
-        ProgramBoard[(int) positionOfSquares[position]] = MarkerType;
+        ProgramBoard[(int)positionOfSquares[position]] = MarkerType;
 
         // WriteLine for test purposes, allows us to see the ProgramBoard change
         // during gameplay.
@@ -94,7 +94,7 @@ public class Board
         VisualBoard.Insert(positionToPlaceMarker, MarkerType);
         Console.Clear();
         Console.WriteLine(string.Join(" ", VisualBoard));
-        
+
         //Testing new board and winnercontrol
         PlaceInProgramBoard(position);
         TestForWinner();
@@ -135,19 +135,19 @@ public class Board
         // This loops thru the positions in the Winners array to check
         // if the player who just put his mark, now has three in a row
         // anywhere on the board.
-        for(int i = 0; i < 8 ; i++) // The "outer" array in Winners
+        for (int i = 0; i < 8; i++) // The "outer" array in Winners
         {
-            for (int j = 0; j <= 3;) // The "inner" array in Winners
+            for (int j = 0; j <= 3; ) // The "inner" array in Winners
             {
                 // If the first index in the inner array holds the players mark
                 // we do the j++ and check the next index.
-                if (MarkerType == ProgramBoard[winners[i,j]])
+                if (MarkerType == ProgramBoard[winners[i, j]])
                 {
                     j++;
                 }
-                    // If the first or second index in a possible winners row
-                    // was not marked by the player, there's no need to check
-                    // the rest of the row, hence break.
+                // If the first or second index in a possible winners row
+                // was not marked by the player, there's no need to check
+                // the rest of the row, hence break.
                 else
                     break;
                 // If j reaches 3, it means that we have had 3 of the players
@@ -165,6 +165,26 @@ public class Board
     public static void AnnounceWinner()
     {
         Console.WriteLine("YAY!!! {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
+        HighScoreTable(Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
         GameOver = true;
+    }
+
+    public static void HighScoreTable(string player)
+    {
+        int player1Wins = 0;
+        int player2Wins = 0;
+
+        if (player == UserGreeting.Player1)
+        {
+            player1Wins++;
+        }
+        else if (player == UserGreeting.Player2)
+        {
+            player2Wins++;
+        }
+
+        Console.WriteLine("\nCurrent score for this tournament:\n");
+        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, player1Wins);
+        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, player2Wins);
     }
 }
