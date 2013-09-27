@@ -19,11 +19,11 @@ public class GameMechanics
             playAgain += playAgain.ToUpper();
             if (playAgain == "yes")
             {
-
+                Program.StartNewGame();
             }
             else
             {
-
+                Console.WriteLine("You SUCK");
             }
         }
     }
