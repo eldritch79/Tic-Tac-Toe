@@ -13,5 +13,21 @@ public class GameMechanics
             string position = Console.ReadLine();
             Board.PlaceMarker(position.ToUpper());
         }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("Would you like to start a new game? YES / NO");
+            string playAgain = Console.ReadLine();
+            playAgain += playAgain.ToUpper();
+            if (playAgain == "yes")
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }
