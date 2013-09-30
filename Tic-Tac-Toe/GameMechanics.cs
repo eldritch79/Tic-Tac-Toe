@@ -13,11 +13,10 @@ public class GameMechanics
         }
         else
         {
-            Console.Clear();
             Console.WriteLine("Would you like to start a new game? YES / NO");
             string playAgain = Console.ReadLine();
-            playAgain += playAgain.ToUpper();
-            if (playAgain == "yes")
+            playAgain = playAgain.ToUpper();
+            if (playAgain == "YES")
             {
                 Program.StartNewGame();
             }
