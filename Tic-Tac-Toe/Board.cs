@@ -112,7 +112,7 @@ public class Board
         }
         else
         {
-            Console.WriteLine("This position has already been taken! Trying to cheat huh?");
+            Console.WriteLine("This position has already been taken! Trying to cheat, huh?");
             GameMechanics.TypeOfInput();
         }
     }
@@ -180,27 +180,25 @@ public class Board
     // Someone has won and we celebrate with this great announcement!
     public static void AnnounceWinner()
     {
-        Console.WriteLine("YAY!!! {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
+        Console.WriteLine("YAY!!! Player {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
         HighScoreTable(Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
         GameOver = true;
     }
 
     public static void HighScoreTable(string player)
     {
-        int player1Wins = 0;
-        int player2Wins = 0;
 
         if (player == UserGreeting.Player1)
         {
-            player1Wins++;
+            UserGreeting.player1Wins++;
         }
         else if (player == UserGreeting.Player2)
         {
-            player2Wins++;
+            UserGreeting.player2Wins++;
         }
 
         Console.WriteLine("\nCurrent score for this tournament:\n");
-        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, player1Wins);
-        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, player2Wins);
+        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, UserGreeting.player1Wins);
+        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, UserGreeting.player2Wins);
     }
 }

@@ -15,7 +15,7 @@ public class GameMechanics
         Board.MarkerType = Board.Player1Turn ? "O" : "X";
         string[] acceptableInput = {"A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"};
         string Player = Board.Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1;
-        Console.WriteLine("{0}, choose a position to place your {1}", Player, Board.MarkerType);
+        Console.WriteLine("Player {0}, choose a position to place your {1}:", Player, Board.MarkerType);
         string position = Console.ReadLine().ToUpper();
 
         // If the user input is not a valid position he/she will be informed
@@ -26,7 +26,7 @@ public class GameMechanics
         }
         else
         {
-            Console.WriteLine("The position does not exist");
+            Console.WriteLine("The position does not exist.");
             NextRound();
         }
     }
