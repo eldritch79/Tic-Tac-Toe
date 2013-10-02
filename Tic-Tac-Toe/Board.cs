@@ -89,16 +89,26 @@ public class Board
         // Translate Xn (ie. A1) to actual index position in list VisualBoard
         int positionToPlaceMarker = PositionTableForVisualBoard(position);
 
-        // Remove existing empty space and replace with MarkerType (X or O).
-        VisualBoard.RemoveAt(positionToPlaceMarker);
-        VisualBoard.Insert(positionToPlaceMarker, MarkerType);
-        Console.Clear();
-        Console.WriteLine(string.Join(" ", VisualBoard));
+        // Make sure the player does not try to place a piece on an already
+        // occupied position
+        if (VisualBoard[positionToPlaceMarker] == " ")
+        {
+            // Remove existing empty space and replace with MarkerType (X or O).
+            VisualBoard.RemoveAt(positionToPlaceMarker);
+            VisualBoard.Insert(positionToPlaceMarker, MarkerType);
+            Console.Clear();
+            Console.WriteLine(string.Join(" ", VisualBoard));
 
-        //Testing new board and winnercontrol
-        PlaceInProgramBoard(position);
-        TestForWinner();
-        SwitchPlayer();
+            //Testing new board and winnercontrol
+            PlaceInProgramBoard(position);
+            TestForWinner();
+            SwitchPlayer();
+        }
+        else
+        {
+            Console.WriteLine("This position has already been taken! Trying to cheat huh?");
+            GameMechanics.TypeOfInput();
+        }
     }
 
     public static void SwitchPlayer()
@@ -110,7 +120,7 @@ public class Board
         Player1Turn = !Player1Turn;
 
         // Allow next turn to start
-        GameMechanics.Input();
+        GameMechanics.TypeOfInput();
     }
 
     // Brand new method for checking if there's a winner

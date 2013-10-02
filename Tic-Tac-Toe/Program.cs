@@ -7,7 +7,7 @@ class Program
         UserGreeting.userInputName();
         Board.CreateVisualBoard();
         Board.CreateProgramBoard();
-        GameMechanics.Input();
+        GameMechanics.TypeOfInput();
     }
 
     static void Main()
