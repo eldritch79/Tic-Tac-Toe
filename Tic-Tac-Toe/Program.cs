@@ -27,6 +27,7 @@ class Program
 
     static void Main()
     {
+        SoundEffect.PlaySound();
         StartNewGame();
     }
 }
