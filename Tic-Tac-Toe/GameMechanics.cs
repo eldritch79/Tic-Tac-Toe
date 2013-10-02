@@ -43,7 +43,7 @@ public class GameMechanics
         }
         else
         {
-            Console.WriteLine("You SUCK");
+            Console.WriteLine("I'm sorry to see you go. Global Thermonuclear War initiated.\nHave a nice day!");
         }
 
     }

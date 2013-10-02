@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Media;
-using System.IO;
-using System.Reflection;
 
 class SoundEffect
 {

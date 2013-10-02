@@ -180,7 +180,7 @@ public class Board
     // Someone has won and we celebrate with this great announcement!
     public static void AnnounceWinner()
     {
-        Console.WriteLine("YAY!!! Player {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
+        Console.WriteLine("YAY!!! {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
         HighScoreTable(Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
         GameOver = true;
     }
@@ -198,6 +198,7 @@ public class Board
         }
 
         Console.WriteLine("\nCurrent score for this tournament:\n");
+        
         Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, UserGreeting.player1Wins);
         Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, UserGreeting.player2Wins);
     }
