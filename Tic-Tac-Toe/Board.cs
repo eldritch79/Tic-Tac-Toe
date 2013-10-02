@@ -4,14 +4,21 @@ using System.Collections.Generic;
 
 public class Board
 {
-    public static List<string> VisualBoard = new List<string>();
+    public static List<string> VisualBoard { get; set; } 
     public static bool Player1Turn { get; set; }
     public static string MarkerType { get; set; }
-    public static string[] ProgramBoard { get; set; }
+    public static List<string> ProgramBoard { get; set; }
     public static bool GameOver { get; set; }
     // This board is purely visual only, no calculations of winner or any
     // other calculations are made with this board/list. It will only show
     // the grid and update it with the markers X/O input by users.
+
+    public static void FirstGame()
+    {
+        VisualBoard = new List<string>();
+        ProgramBoard = new List<string>();
+    }
+
     public static void CreateVisualBoard()
     {
         VisualBoard.AddRange(new[] { " ", "  ", "1", " ", "2", " ", "3", " ", "\n" });
@@ -23,7 +30,6 @@ public class Board
         VisualBoard.AddRange(new[] { "C", "|", " ", "|", " ", "|", " ", "|", "\n" });
         VisualBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
         Console.WriteLine(string.Join(" ", VisualBoard));
-        MarkerType = "X";
     }
 
     // This is the actual game board behind the scenes.
@@ -33,7 +39,7 @@ public class Board
     // They will be set to X or O when a player sets his mark on the board.
     public static void CreateProgramBoard()
     {
-        ProgramBoard = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
+        ProgramBoard.AddRange(new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" });
     }
 
     // This method puts the player marks on the ProgramBoard.
@@ -114,7 +120,7 @@ public class Board
     public static void SwitchPlayer()
     {
         // Changes the marker X/O depending on player turn.
-        MarkerType = Player1Turn ? "X" : "O";
+        MarkerType = Player1Turn ? "O" : "X";
 
         // Invert Player1Turn
         Player1Turn = !Player1Turn;
