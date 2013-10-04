@@ -11,6 +11,9 @@ class Program
 
     public static void StartNextGame()
     {
+        GameMechanics.xStarts = !GameMechanics.xStarts;
+        //if (GameMechanics.xStarts)
+        Board.Player1Turn = GameMechanics.xStarts;
         Board.ProgramBoard.Clear();
         Board.VisualBoard.Clear();
         Console.Clear();
@@ -19,7 +22,7 @@ class Program
 
     public static void GameStarter()
     {
-
+        
         Board.CreateVisualBoard();
         Board.CreateProgramBoard();
         GameMechanics.TypeOfInput();

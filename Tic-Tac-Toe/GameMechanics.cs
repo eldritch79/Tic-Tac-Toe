@@ -2,9 +2,15 @@
 using System.Linq;
 
 public class GameMechanics
+
 {
+    public static bool xStarts {get;set;}
     public static ConsoleKeyInfo key;
     // Check if GameOver is false - start next round, or true - end game.
+    public  GameMechanics(){
+        xStarts = true;
+
+    }
     public static void TypeOfInput()
     {
         if (!Board.GameOver) NextRound();
