@@ -114,7 +114,7 @@ public class Board
         else
         {
             Console.WriteLine("This position has already been taken! Trying to cheat, huh?");
-            GameMechanics.TypeOfInput();
+            GameMechanics.TypeOfInput(Program.LastGameOpponent);
         }
     }
 
@@ -126,8 +126,13 @@ public class Board
         // Invert Player1Turn
         Player1Turn = !Player1Turn;
 
+        if (Program.LastGameOpponent != "pvp")
+        {
+            InitiateBotTurn(Program.LastGameOpponent);
+        }
+
         // Allow next turn to start
-        GameMechanics.TypeOfInput();
+        GameMechanics.TypeOfInput(Program.LastGameOpponent);
     }
 
     // Brand new method for checking if there's a winner
@@ -202,5 +207,24 @@ public class Board
         
         Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, UserGreeting.player1Wins);
         Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, UserGreeting.player2Wins);
+    }
+
+    public static void InitiateBotTurn(string botname)
+    {
+        switch (botname)
+        {
+            case "Emil":
+                // Call the class.method() that starts your bot here
+                break;
+            case "Johan":
+                // Call the class.method() that starts your bot here
+                break;
+            case "Linus":
+                MonkeyBot.StartMonkeyBot();
+                break;
+            case "Paul":
+                // Call the class.method() that starts your bot here
+                break;
+        }
     }
 }

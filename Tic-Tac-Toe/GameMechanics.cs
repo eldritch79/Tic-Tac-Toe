@@ -4,25 +4,42 @@ using System.Linq;
 public class GameMechanics
 
 {
-    public static bool xStarts {get;set;}
+    public static bool XStarts {get;set;}
     public static ConsoleKeyInfo key;
     // Check if GameOver is false - start next round, or true - end game.
     public  GameMechanics(){
-        xStarts = true;
+        XStarts = true;
 
     }
-    public static void TypeOfInput()
+    public static void TypeOfInput(string opponent)
     {
-        if (!Board.GameOver) NextRound();
+        if (!Board.GameOver) NextRound(opponent);
         else GameOver();
     }
     
-    public static void NextRound()
+    public static void NextRound(string opponent)
     {
+        string Opponent = opponent;
         Board.MarkerType = Board.Player1Turn ? "O" : "X";
         string[] acceptableInput = {"A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"};
         string Player = Board.Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1;
-        Console.WriteLine("Player {0}, choose (with the arrow keys) a position to place your {1}:", Player, Board.MarkerType);
+        
+            string positionYourPiece = "Player " + Player + 
+                                        ", choose (with the arrow keys) a position to place your " + 
+                                        Board.MarkerType + ":";
+        
+        // If this game is pvp mode, output message to both players
+        if (opponent == "pvp")
+        {
+            Console.WriteLine(positionYourPiece);
+        }
+
+        // If this game is bot mode, only output this message when it's the users turn.
+        if (Board.Player1Turn && opponent != "pvp")
+        {
+            Console.WriteLine(positionYourPiece);
+        }
+
         //string position = Console.ReadLine().ToUpper();
 
         //if the key we press isn't Enter keep going
@@ -54,7 +71,7 @@ public class GameMechanics
         else
         {
             Console.WriteLine("The position does not exist.");
-            NextRound();
+            NextRound(Opponent);
         }
     }
 

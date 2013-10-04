@@ -2,35 +2,64 @@
 
 class Program
 {
-    public static void StartNewGame()
+    // Remembers choice of opponent for next round.
+    public static string LastGameOpponent { get; set; }
+
+    public static void InitiatePvpSession()
     {
-        UserGreeting.userInputName();
+        // This is a pvp game (Player vs. Player)
+        const bool pvp = true;
+        const string gameType = "pvp";
+        LastGameOpponent = "pvp";
+
+        UserGreeting.UserInputName(pvp);
         Board.FirstGame();
-        GameStarter();
+        GameStarter(gameType);
     }
 
+    public static void InitiateBotSession(string botname)
+    {
+        // This is a pve game (Player vs. Enviroment), pvp is false
+        const bool pvp = false;
+        LastGameOpponent = botname;
+
+        UserGreeting.UserInputName(pvp);
+        Board.FirstGame();
+        Board.CreateVisualBoard();
+        Board.CreateProgramBoard();
+        GameStarter(botname);
+    }
+    
+    // First game when program starts begins here.
+    public static void StartNewGame()
+    {
+        SoundEffect.PlaySound();
+        UserGreeting.PvpOrPve();
+    }
+
+    // This method is needed to start a new round
+    // Clearing the board from last game and starting a new.
     public static void StartNextGame()
     {
-        GameMechanics.xStarts = !GameMechanics.xStarts;
+        GameMechanics.XStarts = !GameMechanics.XStarts;
         //if (GameMechanics.xStarts)
-        Board.Player1Turn = GameMechanics.xStarts;
+        Board.Player1Turn = GameMechanics.XStarts;
         Board.ProgramBoard.Clear();
         Board.VisualBoard.Clear();
         Console.Clear();
-        GameStarter();
+        GameStarter(LastGameOpponent);
     }
 
-    public static void GameStarter()
+    // This is needed for first games and next games
+    public static void GameStarter(string opponent)
     {
-        
         Board.CreateVisualBoard();
         Board.CreateProgramBoard();
-        GameMechanics.TypeOfInput();
+        GameMechanics.TypeOfInput(opponent);
     }
 
     static void Main()
     {
-        SoundEffect.PlaySound();
         StartNewGame();
     }
 }
