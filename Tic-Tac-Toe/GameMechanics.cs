@@ -54,6 +54,8 @@ public class GameMechanics
         playAgain = playAgain.ToUpper();
         if (playAgain == "YES" || playAgain == "Y")
         {
+            //clear list of stored positions not to replace with marker when start new game
+            KeyboardClass.ClearList();
             Board.GameOver = false;
             Program.StartNextGame();  
         }
