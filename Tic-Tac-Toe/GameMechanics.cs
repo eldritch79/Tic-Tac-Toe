@@ -19,18 +19,24 @@ public class GameMechanics
         Console.WriteLine("Player {0}, choose a position to place your {1}:", Player, Board.MarkerType);
         //string position = Console.ReadLine().ToUpper();
 
+        //if the key we press isn't Enter keep going
         do
         {
             key = Console.ReadKey();
-            KeyboardClass.MoveMarker(key);
-            Console.WriteLine("we are in! " + KeyboardClass.getMarkerPosition());
+            KeyboardClass.MoveMarker(key);//sends the pressed key into the class
+            //Console.WriteLine("we are in! " + KeyboardClass.getMarkerPosition());
 
         } while (key.Key != ConsoleKey.Enter);
+        //when Enter is pressed we continue down the code
+
+        //the position is fetched from keyboard class
         string position = KeyboardClass.getMarkerPosition();
         // If the user input is not a valid position he/she will be informed
         // and asked to choose another position.
         if (acceptableInput.Contains(position))
         {
+            //if the position is accepted we add that position to a list 
+            //so we know what not to replace when moving around the marker
             KeyboardClass.AddPosition(position);
             Board.PlaceMarker(position.ToUpper());
         }

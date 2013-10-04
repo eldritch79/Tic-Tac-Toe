@@ -97,6 +97,7 @@ public class Board
 
         // Make sure the player does not try to place a piece on an already
         // occupied position
+        //added "?" to acceptable chars to remove and replace
         if (VisualBoard[positionToPlaceMarker] == " " || VisualBoard[positionToPlaceMarker] == "?")
         {
             // Remove existing empty space and replace with MarkerType (X or O).
