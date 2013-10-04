@@ -16,7 +16,7 @@ public class GameMechanics
         Board.MarkerType = Board.Player1Turn ? "O" : "X";
         string[] acceptableInput = {"A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"};
         string Player = Board.Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1;
-        Console.WriteLine("Player {0}, choose a position to place your {1}:", Player, Board.MarkerType);
+        Console.WriteLine("Player {0}, choose (with the arrow keys) a position to place your {1}:", Player, Board.MarkerType);
         //string position = Console.ReadLine().ToUpper();
 
         //if the key we press isn't Enter keep going

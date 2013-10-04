@@ -22,13 +22,13 @@ public class Board
     public static void CreateVisualBoard()
     {
         VisualBoard.AddRange(new[] { " ", "  ", "1", " ", "2", " ", "3", " ", "\n" });
-        VisualBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        VisualBoard.AddRange(new[] { " ", "┌", "─", "┬", "─", "┬", "─", "┐", "\n" });
         VisualBoard.AddRange(new[] { "A", "|", " ", "|", " ", "|", " ", "|", "\n" });
-        VisualBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        VisualBoard.AddRange(new[] { " ", "├", "─", "┼", "-", "┼", "─", "┤", "\n" });
         VisualBoard.AddRange(new[] { "B", "|", " ", "|", " ", "|", " ", "|", "\n" });
-        VisualBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        VisualBoard.AddRange(new[] { " ", "├", "─", "┼", "-", "┼", "─", "┤", "\n" });
         VisualBoard.AddRange(new[] { "C", "|", " ", "|", " ", "|", " ", "|", "\n" });
-        VisualBoard.AddRange(new[] { " ", "+", "-", "+", "-", "+", "-", "+", "\n" });
+        VisualBoard.AddRange(new[] { " ", "└", "─", "┴", "─", "┴", "─", "┘", "\n" });
         Console.WriteLine(string.Join(" ", VisualBoard));
     }
 
