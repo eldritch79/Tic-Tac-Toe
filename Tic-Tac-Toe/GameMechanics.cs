@@ -38,6 +38,11 @@ public class GameMechanics
             //if the position is accepted we add that position to a list 
             //so we know what not to replace when moving around the marker
             KeyboardClass.AddPosition(position);
+            if (KeyboardClass.list.Count == 9)
+            {
+                Console.WriteLine("It's a draw!");
+                GameOver();
+            }
             Board.PlaceMarker(position.ToUpper());
         }
         else

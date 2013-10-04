@@ -8,7 +8,7 @@ public class KeyboardClass
     private static string FakeMarker = "?";
     private static int positionNum = 1;
     private static int positionLetter = 1;
-    private static List<string> list = new List<string>();//Holds the saved positions when we press Enter
+    public static List<string> list = new List<string>();//Holds the saved positions when we press Enter
 
     public static void MoveMarker(ConsoleKeyInfo key)
     {
