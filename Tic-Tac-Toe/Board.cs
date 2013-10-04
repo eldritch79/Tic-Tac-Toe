@@ -196,17 +196,17 @@ public class Board
 
         if (player == UserGreeting.Player1)
         {
-            UserGreeting.player1Wins++;
+            UserGreeting.Player1Wins++;
         }
         else if (player == UserGreeting.Player2)
         {
-            UserGreeting.player2Wins++;
+            UserGreeting.Player2Wins++;
         }
 
         Console.WriteLine("\nCurrent score for this tournament:\n");
         
-        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, UserGreeting.player1Wins);
-        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, UserGreeting.player2Wins);
+        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, UserGreeting.Player1Wins);
+        Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, UserGreeting.Player2Wins);
     }
 
     public static void InitiateBotTurn(string botname)
