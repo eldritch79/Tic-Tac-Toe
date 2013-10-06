@@ -25,8 +25,6 @@ class Program
 
         UserGreeting.UserInputName(pvp);
         Board.FirstGame();
-        Board.CreateVisualBoard();
-        Board.CreateProgramBoard();
         GameStarter(botname);
     }
     
@@ -43,7 +41,7 @@ class Program
     {
         GameMechanics.XStarts = !GameMechanics.XStarts;
         //if (GameMechanics.xStarts)
-        Board.Player1Turn = GameMechanics.XStarts;
+        Board.Player2Turn = GameMechanics.XStarts;
         Board.ProgramBoard.Clear();
         Board.VisualBoard.Clear();
         Console.Clear();

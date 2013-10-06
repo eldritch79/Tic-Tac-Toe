@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Board
 {
     public static List<string> VisualBoard { get; set; } 
-    public static bool Player1Turn { get; set; }
+    public static bool Player2Turn { get; set; }
     public static string MarkerType { get; set; }
     public static List<string> ProgramBoard { get; set; }
     public static bool GameOver { get; set; }
@@ -39,7 +39,7 @@ public class Board
     // They will be set to X or O when a player sets his mark on the board.
     public static void CreateProgramBoard()
     {
-        ProgramBoard.AddRange(new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" });
+        ProgramBoard.AddRange(new[] { " ", " ", " ", " ", " ", " ", " ", " ", " " });
     }
 
     // This method puts the player marks on the ProgramBoard.
@@ -121,10 +121,10 @@ public class Board
     public static void SwitchPlayer()
     {
         // Changes the marker X/O depending on player turn.
-        MarkerType = Player1Turn ? "O" : "X";
+        MarkerType = Player2Turn ? "O" : "X";
 
-        // Invert Player1Turn
-        Player1Turn = !Player1Turn;
+        // Invert Player2Turn
+        Player2Turn = !Player2Turn;
 
         if (Program.LastGameOpponent != "pvp")
         {
@@ -186,8 +186,8 @@ public class Board
     // Someone has won and we celebrate with this great announcement!
     public static void AnnounceWinner()
     {
-        Console.WriteLine("YAY!!! {0} won with three in a row!", Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
-        HighScoreTable(Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1);
+        Console.WriteLine("YAY!!! {0} won with three in a row!", Player2Turn ? UserGreeting.Player2 : UserGreeting.Player1);
+        HighScoreTable(Player2Turn ? UserGreeting.Player2 : UserGreeting.Player1);
         GameOver = true;
     }
 

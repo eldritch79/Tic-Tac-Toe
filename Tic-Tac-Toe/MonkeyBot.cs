@@ -13,7 +13,7 @@ class MonkeyBot
     public static void StartMonkeyBot()
     {
         Console.WriteLine("ProgramBoard Count: " + Board.ProgramBoard.Count);
-        Board.MarkerType = Board.Player1Turn ? "O" : "X";
+        Board.MarkerType = Board.Player2Turn ? "O" : "X";
         ImportCurrentBoard();
         BlockOpponentWin();
 
@@ -55,7 +55,7 @@ class MonkeyBot
     public static void IsItMyTurnYet()
     {
         // This is where it is decided if this bot acts as player 1 or 2
-        MyTurn = Board.Player1Turn;
+        MyTurn = Board.Player2Turn;
 
         if (MyTurn)
         {

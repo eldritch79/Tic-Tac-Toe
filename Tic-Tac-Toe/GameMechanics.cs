@@ -20,9 +20,9 @@ public class GameMechanics
     public static void NextRound(string opponent)
     {
         string Opponent = opponent;
-        Board.MarkerType = Board.Player1Turn ? "O" : "X";
+        Board.MarkerType = Board.Player2Turn ? "O" : "X";
         string[] acceptableInput = {"A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"};
-        string Player = Board.Player1Turn ? UserGreeting.Player2 : UserGreeting.Player1;
+        string Player = Board.Player2Turn ? UserGreeting.Player2 : UserGreeting.Player1;
         
             string positionYourPiece = "Player " + Player + 
                                         ", choose (with the arrow keys) a position to place your " + 
@@ -35,7 +35,7 @@ public class GameMechanics
         }
 
         // If this game is bot mode, only output this message when it's the users turn.
-        if (Board.Player1Turn && opponent != "pvp")
+        if (!Board.Player2Turn && opponent != "pvp")
         {
             Console.WriteLine(positionYourPiece);
         }
