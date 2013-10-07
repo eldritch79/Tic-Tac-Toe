@@ -63,7 +63,7 @@ public class Board
 
         // WriteLine for test purposes, allows us to see the ProgramBoard change
         // during gameplay.
-        Console.WriteLine(string.Join(", ", ProgramBoard));
+        // Console.WriteLine(string.Join(", ", ProgramBoard));
     }
 
     // Method will take user input, i.e. A2, B3, translate it to the
