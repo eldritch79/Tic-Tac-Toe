@@ -46,7 +46,7 @@ class UserGreeting
                 Program.InitiateBotSession("Linus");
                 break;
             case 5:
-                Player2 = "Pauls"; // Input name of your bot here
+                Player2 = "RandomBot"; // Input name of your bot here
                 Program.InitiateBotSession("Paul");
                 break;
             default:

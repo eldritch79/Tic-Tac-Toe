@@ -228,7 +228,7 @@ public class Board
                 MonkeyBot.StartMonkeyBot();
                 break;
             case "Paul":
-                // Call the class.method() that starts your bot here
+                RandomBot.StartRandomBot();
                 break;
         }
     }
