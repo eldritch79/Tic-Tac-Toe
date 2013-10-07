@@ -126,13 +126,18 @@ public class Board
         // Invert Player2Turn
         Player2Turn = !Player2Turn;
 
-        if (Program.LastGameOpponent != "pvp")
+        if (Player2Turn && Program.LastGameOpponent != "pvp")
         {
-            InitiateBotTurn(Program.LastGameOpponent);
+            if (!Board.GameOver) InitiateBotTurn(Program.LastGameOpponent);
+            else GameMechanics.GameOver();
+            
         }
 
         // Allow next turn to start
-        GameMechanics.TypeOfInput(Program.LastGameOpponent);
+        if (!Board.GameOver)
+        {
+            GameMechanics.TypeOfInput(Program.LastGameOpponent);
+        }
     }
 
     // Brand new method for checking if there's a winner

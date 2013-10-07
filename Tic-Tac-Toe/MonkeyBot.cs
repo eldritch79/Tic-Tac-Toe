@@ -46,7 +46,7 @@ class MonkeyBot
 
     public static void ImportCurrentBoard()
     {
-        CurrentBoard = Board.ProgramBoard;
+        CurrentBoard = new List<string>(Board.ProgramBoard);
         CurrentBoard.Insert(3, "\n");
         CurrentBoard.Insert(7, "\n");
         CurrentBoardString = string.Join("", CurrentBoard);
