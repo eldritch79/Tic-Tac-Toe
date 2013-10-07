@@ -24,7 +24,6 @@ class UserGreeting
 
         int userChoice;
         bool isNum = int.TryParse(Console.ReadLine(), out userChoice);
-        Console.WriteLine(isNum);
         // Make sure the user typed an int, if TryParse fails, this takes user back to beginning of method.
         if (!isNum) PvpOrPve();
 
