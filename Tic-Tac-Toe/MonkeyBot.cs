@@ -105,12 +105,12 @@ class MonkeyBot
 
                     if (emptySpot == null && " " == Board.ProgramBoard[winners[i, x]])
                     {
-                        PlacePiece((int)emptySpot);  
+                        PlacePiece(winners[i, x]); 
                     }
 
                     if (emptySpot != null && " " == Board.ProgramBoard[(int)emptySpot])
                     {
-                        PlacePiece(winners[i, x]);
+                        PlacePiece((int)emptySpot); 
                     }
 
                     break;
@@ -151,8 +151,14 @@ class MonkeyBot
                 {
                     // Make a move!
                     int x = j + 1;
-                    if (emptySpot == null) PlacePiece(winners[i, x]);
-                    if (emptySpot != null) PlacePiece((int)emptySpot);
+                    if (emptySpot != null && " " == Board.ProgramBoard[(int)emptySpot])
+                    {
+                        PlacePiece((int)emptySpot);
+                    }
+                    if (emptySpot == null && " " == Board.ProgramBoard[winners[i, x]])
+                    {
+                        PlacePiece(winners[i, x]);
+                    }
                     break;
                 }
             }
