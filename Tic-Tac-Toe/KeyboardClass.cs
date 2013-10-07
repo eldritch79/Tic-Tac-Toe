@@ -46,7 +46,10 @@ public class KeyboardClass
     //when we click enter we add a position i.e A2.
     public static void AddPosition(string position)
     {
-        list.Add(position);
+        if (!list.Contains(position))
+        {
+            list.Add(position);
+        }
     }
     public static void ClearList()
     {

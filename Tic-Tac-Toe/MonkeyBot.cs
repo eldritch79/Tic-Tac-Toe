@@ -123,6 +123,7 @@ class MonkeyBot
 
     public static void PlacePiece(int position)
     {
+        KeyboardClass.AddPosition(TranslatePositions(position));
         Board.PlaceMarker(TranslatePositions(position));
     }
 
