@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+
 // This is the computer player made by mrapan.
 // Prepare to loose!
-using System.Security.Cryptography.X509Certificates;
 
 class MonkeyBot
 {
-    public static bool MyTurn { get; set; }
-    public static List<string> CurrentBoard { get; set; }
-    public static string CurrentBoardString { get; set; }
 
     public static void StartMonkeyBot()
     {
-        Console.WriteLine("ProgramBoard Count: " + Board.ProgramBoard.Count);
         Board.MarkerType = Board.Player2Turn ? "O" : "X";
-        ImportCurrentBoard();
-        BlockOpponentWin();
-
-
+        if (!Board.GameOver) WinOrBlock();
     }
 
+    // Translate array positions 0-8 to the kind of position input the games likes.
     public static string TranslatePositions(int internalPosition)
     {
         Hashtable translate = new Hashtable
@@ -39,36 +33,19 @@ class MonkeyBot
         string externalPosition = (string)translate[internalPosition];
         if (internalPosition < 0 || internalPosition > 8)
         {
-            Console.WriteLine("Positionen är felaktig, den ska vara 0-8 men är nu {0}", internalPosition);
+            // Error message if somethings goes wrong
+            Console.WriteLine("Something terrible has happened on position {0}", internalPosition);
             string a = Console.ReadLine();
         }
         return externalPosition;
     }
 
-    public static void ImportCurrentBoard()
-    {
-        CurrentBoard = new List<string>(Board.ProgramBoard);
-        CurrentBoard.Insert(3, "\n");
-        CurrentBoard.Insert(7, "\n");
-        CurrentBoardString = string.Join("", CurrentBoard);
-    }
-
-    public static void IsItMyTurnYet()
-    {
-        // This is where it is decided if this bot acts as player 1 or 2
-        MyTurn = Board.Player2Turn;
-
-        if (MyTurn)
-        {
-            BlockOpponentWin();
-        }
-    }
-
-    public static void BlockOpponentWin()
+    public static void WinOrBlock()
     {
         int? emptySpot = null;
         int k = 0;
 
+        // Array of winning rows
         int[,] winners = new int[,]
                    {
                         {0,1,2},
@@ -83,12 +60,10 @@ class MonkeyBot
 
         // This checks if the bot has 2 in a row, if it does, BAM! Time to win!
         // This is just a reversed version of the block method. Read comments down there instead!
-        for (int i = 0; i < 8; i++) 
+        for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                Console.WriteLine("Nuvarande pos har:" + Board.ProgramBoard[winners[i, j]]);
-
                 if ("O" == Board.ProgramBoard[winners[i, j]]) k++;
 
                 if ("X" == Board.ProgramBoard[winners[i, j]]) k--;
@@ -96,7 +71,6 @@ class MonkeyBot
                 else if (" " == Board.ProgramBoard[winners[i, j]])
                 {
                     emptySpot = winners[i, j];
-                    Console.WriteLine("BlockPos = {0}", emptySpot);
                 }
 
                 if (k == 2)
@@ -105,12 +79,12 @@ class MonkeyBot
 
                     if (emptySpot == null && " " == Board.ProgramBoard[winners[i, x]])
                     {
-                        PlacePiece(winners[i, x]); 
+                        PlacePiece(winners[i, x]);
                     }
 
                     if (emptySpot != null && " " == Board.ProgramBoard[(int)emptySpot])
                     {
-                        PlacePiece((int)emptySpot); 
+                        PlacePiece((int)emptySpot);
                     }
 
                     break;
@@ -125,17 +99,11 @@ class MonkeyBot
         // anywhere on the board.
         for (int i = 0; i < 8; i++) // The "outer" array in Winners
         {
-
             for (int j = 0; j < 3; j++) // The "inner" array in Winners
             {
-
-                // If the first index in the inner array holds the players mark
-                // we do the j++ and check the next index.
-                Console.WriteLine("Nuvarande pos har:" + Board.ProgramBoard[winners[i, j]]);
-
                 // If winning row contains opponents mark, X, add 1 to k.
                 if ("X" == Board.ProgramBoard[winners[i, j]]) k++;
-                
+
                 // If winning row contains bots mark, O, delete 1 from k, 
                 // As this is not a possible winning row anymore
                 if ("O" == Board.ProgramBoard[winners[i, j]]) k--;
@@ -143,7 +111,6 @@ class MonkeyBot
                 else if (" " == Board.ProgramBoard[winners[i, j]])
                 {
                     emptySpot = winners[i, j];
-                    Console.WriteLine("BlockPos = {0}", emptySpot);
                 }
                 // If k reaches 2, it means that we have had 2 of the players
                 // MarkerType on a winning row, STOP HIM!
@@ -165,14 +132,66 @@ class MonkeyBot
             k = 0;
             emptySpot = null;
         }
-        PlaceAtRandom();
+        PlaceMidOrCorner();
     }
 
-    public static void PlaceAtRandom()
+    public static void PlaceMidOrCorner()
     {
-        int position = Board.ProgramBoard.IndexOf(" ");
-        Console.WriteLine("RandomPos = {0}", position);
-        PlacePiece(position);
+        // Arrays of the positions
+        int[] corners = { 0, 2, 6, 8 };
+        int[] lastResort = { 1, 3, 5, 7 };
+        
+        bool emptyCornerFound = false;
+        bool madeAMove = false;
+        Random random = new Random();
+
+        // If center is available, place marker in center.
+        if (Board.ProgramBoard[4] == " ")
+        {
+            PlacePiece(4);
+            madeAMove = true;
+        }
+
+        // While it has not found an empty corner, keep looking for one. If a move haven't been made already.
+        while (!emptyCornerFound && !madeAMove)
+        {
+            // Choose a random corner from the array, don't want to be predictable
+            int randomNumber = random.Next(0, corners.Length);
+            // If the random corner is empty, place the mark here.
+            if (Board.ProgramBoard[randomNumber] == " ")
+            {
+                emptyCornerFound = true;
+                PlacePiece(randomNumber);
+                madeAMove = true;
+            }
+                // If the random corner is not empty, remove it from the array and keep looping.
+            else
+            {
+                int cornerToRemove = corners[randomNumber];
+                corners = corners.Where(val => val != cornerToRemove).ToArray();
+            }
+            // If there's no empty corners left, break.
+            if (corners.Length == 0) break;
+        }
+
+        // If bot couldn't win or block, and the center and corners were occupied
+        // Pick random from position 1, 3, 5 and 6, same as above but for the worst positions.
+        while (!madeAMove)
+        {
+            int randomNumber = random.Next(0, lastResort.Length);
+
+            if (Board.ProgramBoard[randomNumber] == " ")
+            {
+                PlacePiece(randomNumber);
+                madeAMove = true;
+            }
+            else
+            {
+                int lastResortToRemove = lastResort[randomNumber];
+                lastResort = lastResort.Where(val => val != lastResortToRemove).ToArray();
+            }
+            if (lastResort.Length == 0) break;
+        }
     }
 
     public static void PlacePiece(int position)
@@ -180,5 +199,4 @@ class MonkeyBot
         KeyboardClass.AddPosition(TranslatePositions(position));
         Board.PlaceMarker(TranslatePositions(position));
     }
-
 }
