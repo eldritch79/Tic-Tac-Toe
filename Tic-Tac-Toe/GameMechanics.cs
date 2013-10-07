@@ -43,14 +43,18 @@ public class GameMechanics
         //string position = Console.ReadLine().ToUpper();
 
         //if the key we press isn't Enter keep going
-        do
-        {
-            key = Console.ReadKey();
-            KeyboardClass.MoveMarker(key);//sends the pressed key into the class
-            //Console.WriteLine("we are in! " + KeyboardClass.getMarkerPosition());
+        //and only do this if not player 2
+        if(!Board.Player2Turn){
+        
+            do
+            {
+                key = Console.ReadKey();
+                KeyboardClass.MoveMarker(key);//sends the pressed key into the class
+                //Console.WriteLine("we are in! " + KeyboardClass.getMarkerPosition());
 
-        } while (key.Key != ConsoleKey.Enter);
+            } while (key.Key != ConsoleKey.Enter);
         //when Enter is pressed we continue down the code
+        }
 
         //the position is fetched from keyboard class
         string position = KeyboardClass.getMarkerPosition();
