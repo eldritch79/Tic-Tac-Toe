@@ -49,6 +49,7 @@ public class KeyboardClass
         if (!list.Contains(position))
         {
             list.Add(position);
+            EmkesBot._posTakenX.Add(position);
         }
     }
     public static void ClearList()

@@ -87,6 +87,7 @@ public class GameMechanics
         if (playAgain == "YES" || playAgain == "Y")
         {
             //clear list of stored positions not to replace with marker when start new game
+            EmkesBot.ResetList();
             KeyboardClass.ClearList();
             Board.GameOver = false;
             Program.StartNextGame();  

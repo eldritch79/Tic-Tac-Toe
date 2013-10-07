@@ -219,7 +219,7 @@ public class Board
         switch (botname)
         {
             case "Emil":
-                // Call the class.method() that starts your bot here
+                EmkesBot.StartHalfBrainBot();
                 break;
             case "Johan":
                 // Call the class.method() that starts your bot here
