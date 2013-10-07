@@ -39,7 +39,8 @@ class UserGreeting
                 break;
             case 3:
                 Player2 = "Johans"; // Input name of your bot here
-                Program.InitiateBotSession("Johan");
+                Console.WriteLine("This is not the droid you are looking for.");    
+                 // Program.InitiateBotSession("Johan");
                 break;
             case 4:
                 Player2 = "MonkeyBot";
