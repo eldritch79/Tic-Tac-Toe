@@ -55,6 +55,17 @@ public class GameMechanics
             } while (key.Key != ConsoleKey.Enter);
         //when Enter is pressed we continue down the code
         }
+        else if (Board.Player2Turn && opponent == "pvp")
+        {
+            do
+            {
+                key = Console.ReadKey();
+                KeyboardClass.MoveMarker(key);//sends the pressed key into the class
+                //Console.WriteLine("we are in! " + KeyboardClass.getMarkerPosition());
+
+            } while (key.Key != ConsoleKey.Enter);
+            //when Enter is pressed we continue down the code
+        }
 
         //the position is fetched from keyboard class
         string position = KeyboardClass.getMarkerPosition();
