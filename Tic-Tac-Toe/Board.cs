@@ -212,6 +212,7 @@ public class Board
         
         Console.WriteLine("{0}: {1} wins.", UserGreeting.Player1, UserGreeting.Player1Wins);
         Console.WriteLine("{0}: {1} wins.", UserGreeting.Player2, UserGreeting.Player2Wins);
+        GameMechanics.GameOver(); // Makes PvP end correctly. Bots seem to override this. Can't find where...
     }
 
     public static void InitiateBotTurn(string botname)
