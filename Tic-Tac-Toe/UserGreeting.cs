@@ -17,9 +17,9 @@ class UserGreeting
         string choices = "";
         choices += "1. Play against a friend. Warning! This may end friendship.\n";
         choices += "2. Play against Emils bot.\n"; // Replace with the name of Emils murderbot, add personal taunt.
-        choices += "3. Play against Johans bot.\n"; // Replace with the name of Johans deathbot, add personal taunt.
-        choices += "4. Play against MonkeyBot. Can you beat a monkey?\n";
-        choices += "5. Play against Pauls bot.\n"; // Replace with the name of Pauls exterminatorbot, add personal taunt.
+        // choices += "3. Play against Johans bot.\n"; // Replace with the name of Johans deathbot, add personal taunt.
+        choices += "3. Play against MonkeyBot. Can you beat a monkey?\n";
+        choices += "4. Play against Pauls bot.\n"; // Replace with the name of Pauls exterminatorbot, add personal taunt.
         Console.WriteLine(choices);
 
         int userChoice;
@@ -36,16 +36,16 @@ class UserGreeting
                 Player2 = "Emils"; // Input name of your bot here
                 Program.InitiateBotSession("Emil");
                 break;
+//            case 3:
+//                Player2 = "Johans"; // Input name of your bot here
+//                Console.WriteLine("This is not the droid you are looking for.");    
+//                 // Program.InitiateBotSession("Johan");
+//                break;
             case 3:
-                Player2 = "Johans"; // Input name of your bot here
-                Console.WriteLine("This is not the droid you are looking for.");    
-                 // Program.InitiateBotSession("Johan");
-                break;
-            case 4:
                 Player2 = "MonkeyBot";
                 Program.InitiateBotSession("Linus");
                 break;
-            case 5:
+            case 4:
                 Player2 = "RandomBot"; // Input name of your bot here
                 Program.InitiateBotSession("Paul");
                 break;

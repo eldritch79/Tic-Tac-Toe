@@ -129,8 +129,7 @@ public class Board
         if (Player2Turn && Program.LastGameOpponent != "pvp")
         {
             if (!Board.GameOver) InitiateBotTurn(Program.LastGameOpponent);
-            else GameMechanics.GameOver();
-            
+            //else GameMechanics.GameOver(); 
         }
 
         // Allow next turn to start

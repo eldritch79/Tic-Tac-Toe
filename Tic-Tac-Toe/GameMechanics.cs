@@ -107,6 +107,7 @@ public class GameMechanics
         {
             Board.GameOver = true;
             Console.WriteLine("I'm sorry to see you go. Global Thermonuclear War initiated.\nHave a nice day!");
+            System.Environment.Exit(exitCode:1);
         }
 
     }
