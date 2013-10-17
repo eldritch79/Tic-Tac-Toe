@@ -185,6 +185,12 @@ public class Board
                 }
             }
         }
+
+        if (KeyboardClass.list.Count == 9)
+        {
+            Console.WriteLine("It's a draw!");
+            GameMechanics.GameOver();
+        }
     }
 
     // Someone has won and we celebrate with this great announcement!
